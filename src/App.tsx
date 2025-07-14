@@ -1,15 +1,32 @@
 import "./App.css";
 import noise from "../public/untitled.png";
-
 import { Button } from "./components/Buttons";
 import dashboard from "../public/product-image.png";
+import { useEffect, useState } from "react";
+
 function App() {
-  const array = new Array(25).fill(0);
+  const [arraySize, setArraySize] = useState(25); // Default to desktop
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (window.innerWidth < 768) {
+        setArraySize(10); // Mobile
+      } else {
+        setArraySize(25); // Medium and up
+      }
+    };
+
+    updateSize(); // Run on mount
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  const array = new Array(arraySize).fill(0);
   return (
     <div className="bg-[#090b12]  h-fit relative w-full min-h-screen  pb-41">
       {/* background div to put behind fractal glass */}
-      <div className="flex justify-center md:-top-[60%] -top-[70%] h-full w-full   absolute">
-        <div className="h-full w-full bg-[radial-gradient(50%_50%_at_center_center,#80aaff_10%,#226cff)] z-0 rounded-full "></div>
+      <div className="flex justify-center md:-top-[60%] -top-[70%] h-full w-full   absolute  md:blur-0 blur-3xl">
+        <div className="h-full w-full bg-[radial-gradient(50%_50%_at_center_center,#80aaff_10%,#226cff)] z-0 rounded-full"></div>
       </div>
 
       {/* fractal-glass */}
@@ -34,6 +51,8 @@ function App() {
                   "linear-gradient(to bottom, black 85%, transparent 95%)",
                 fontSize: 0,
                 lineHeight: 0,
+                WebkitBackdropFilter: "blur(150px)",
+                backdropFilter: "blur(150px)",
               }}
             >
               <div
@@ -91,23 +110,23 @@ function App() {
           </div>
 
           {/* dashboard image */}
-          <div className="md:h-full md:w-full h-150 w-108 flex justify-center  mt-20  bg-[#090b12]   overflow-hidden md:overflow-visible ">
-            <div className="md:h-full md:w-[900px] w-108 bg-[#090b12] flex justify-center z-50 rounded-3xl">
+          <div className="md:h-full md:w-full h-150 w-97 flex justify-center  mt-20  bg-[#090b12]   overflow-hidden md:overflow-visible ">
+            <div className="md:h-full md:w-[900px] w-97 h-full bg-[#090b12] flex justify-center z-50 rounded-3xl">
               {" "}
               <div
-                className="border-3 border-[#d5e3fe]   h-96 w-[900px] rounded-xl  "
+                className="border-3 border-[#d5e3fe]  h-70 md:h-96 w-[900px] rounded-xl  "
                 style={{
                   maskImage: `radial-gradient(circle at 50% -30%, black 10%, transparent 60%)`,
                   WebkitMaskImage: `radial-gradient(circle at 50% -30%, black 10%, transparent 60%)`,
                 }}
               ></div>
-              <div className="bg-blue-400 h-32 w-96 absolute rounded-full blur-3xl"></div>
-              <div className="flex justify-center z-50 absolute p-1 h-fit w-fit  ">
+              <div className="bg-blue-500 h-32 w-96 absolute rounded-full blur-3xl"></div>
+              <div className="flex justify-center z-50 absolute p-1 h-fit w-fit   ">
                 <img
                   src={dashboard}
                   height={500}
                   width={900}
-                  className="md:rounded-3xl rounded-lg  "
+                  className="md:rounded-3xl rounded-lg  flex justify-center"
                 />
                 <div className="absolute inset-1 bg-blue-500 opacity-40 mix-blend-overlay rounded-3xl "></div>
               </div>
