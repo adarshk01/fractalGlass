@@ -7,10 +7,12 @@ function App() {
   const array = new Array(25).fill(0);
   return (
     <div className="bg-[#090b12]  h-fit relative w-full min-h-screen  pb-41">
-      <div className="flex justify-center -top-[60%] h-full w-full   absolute">
+      {/* background div to put behind fractal glass */}
+      <div className="flex justify-center md:-top-[60%] -top-[70%] h-full w-full   absolute">
         <div className="h-full w-full bg-[radial-gradient(50%_50%_at_center_center,#80aaff_10%,#226cff)] z-0 rounded-full "></div>
       </div>
 
+      {/* fractal-glass */}
       <div
         className="flex text-white z-20 gap-0   inset-0  "
         style={{
@@ -28,7 +30,7 @@ function App() {
                backdrop-blur-[150px] bg-blend-multiply relative  flex-1 min-w-0`}
               style={{
                 maskImage: `linear-gradient(to bottom, black 85%, transparent 95%)`,
-                fontSize: 0, // Eliminate font-size related spacing
+                fontSize: 0,
                 lineHeight: 0,
               }}
             >
@@ -39,11 +41,11 @@ function App() {
             </div>
           );
         })}
-        <div className=" absolute w-full h-full pb-32">
+        <div className=" absolute w-full h-full pb-32  overflow-hidden md:overflow-visible ">
           {/* Header */}
-          <div className="flex justify-between p-10 md:px-16 px-8">
+          <div className="flex justify-between p-10 md:px-16 px-8 ">
             <div className="font-semibold text-xl">FlowSync</div>
-            <div className=" md:flex gap-15 items-center bg-blue-100/10 px-10 py-2  rounded-lg border border-white/30 relative font-semibold  hidden">
+            <div className=" md:flex gap-15 items-center bg-blue-100/10 px-10 py-2  rounded-lg border border-white/30 relative font-semibold  hidden  ">
               <div className="cursor-pointer">Home</div>
               <div className="cursor-pointer">Pricing</div>
               <div className="cursor-pointer">Solution</div>
@@ -86,8 +88,8 @@ function App() {
             </div>
           </div>
 
-          {/* dashboard */}
-          <div className="md:h-full md:w-full h-150 w-108 flex justify-center  mt-20  bg-[#090b12]   ">
+          {/* dashboard image */}
+          <div className="md:h-full md:w-full h-150 w-108 flex justify-center  mt-20  bg-[#090b12]   overflow-hidden md:overflow-visible ">
             <div className="md:h-full md:w-[900px] w-108 bg-[#090b12] flex justify-center z-50 rounded-3xl">
               {" "}
               <div
