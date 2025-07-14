@@ -30,6 +30,8 @@ function App() {
                backdrop-blur-[150px] bg-blend-multiply relative  flex-1 min-w-0`}
               style={{
                 maskImage: `linear-gradient(to bottom, black 85%, transparent 95%)`,
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, black 85%, transparent 95%)",
                 fontSize: 0,
                 lineHeight: 0,
               }}
